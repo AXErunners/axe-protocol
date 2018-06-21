@@ -1,6 +1,6 @@
 # axe-protocol
 
-[![npm version](https://img.shields.io/npm/v/axe-protocol.svg)](https://www.npmjs.com/package/axe-protocol)
+[![npm version](https://img.shields.io/npm/v/@axerunners/axe-protocol.svg)](https://www.npmjs.com/package/@axerunners/axe-protocol)
 [![Build Status](https://travis-ci.com/AXErunners/axe-protocol.svg?branch=master)](https://travis-ci.com/AXErunners/axe-protocol)
 [![Dependency Status](https://david-dm.org/axerunners/axe-protocol.svg)](https://david-dm.org/axerunners/axe-protocol)
 
