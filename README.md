@@ -29,7 +29,7 @@ encoder.write({
   magic: 0xb5ce6b04,
   command: 'ping',
   payload: {
-    nonce: new Buffer('0123456789abcdef', 'hex')
+    nonce: Buffer.from('0123456789abcdef', 'hex')
   }
 })
 ```

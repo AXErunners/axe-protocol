@@ -22,7 +22,7 @@ exports.boolean = (function () {
 })()
 
 exports.ipAddress = (function () {
-  var IPV4_PREFIX = new Buffer('00000000000000000000ffff', 'hex')
+  var IPV4_PREFIX = Buffer.from('00000000000000000000ffff', 'hex')
   function encode (value, buffer, offset) {
     if (!buffer) buffer = Buffer.alloc(16)
     if (!offset) offset = 0
@@ -84,7 +84,7 @@ exports.messageCommand = (function () {
   var buffer12 = struct.Buffer(12)
 
   function encode (value, buffer, offset) {
-    var bvalue = new Buffer(value, 'ascii')
+    var bvalue = Buffer.from(value, 'ascii')
     var nvalue = Buffer.alloc(12)
     bvalue.copy(nvalue, 0)
     for (var i = bvalue.length; i < nvalue.length; ++i) nvalue[i] = 0

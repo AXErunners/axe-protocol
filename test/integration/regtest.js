@@ -141,15 +141,15 @@ test('Integration with bitcoin core in regtest mode', function (t) {
         command: 'version',
         payload: {
           version: 70000,
-          services: new Buffer('0100000000000000', 'hex'),
+          services: Buffer.from('0100000000000000', 'hex'),
           timestamp: Math.round(Date.now() / 1000),
           receiverAddress: {
-            services: new Buffer('0100000000000000', 'hex'),
+            services: Buffer.from('0100000000000000', 'hex'),
             address: '10.0.0.1',
             port: 8333
           },
           senderAddress: {
-            services: new Buffer('0100000000000000', 'hex'),
+            services: Buffer.from('0100000000000000', 'hex'),
             address: '10.0.0.2',
             port: 8333
           },
@@ -218,7 +218,7 @@ test('Integration with bitcoin core in regtest mode', function (t) {
           t.true(Array.isArray(msg.payload))
           t.same(msg.payload.length, 1)
           t.same(msg.payload[0].type, 2) // MSG_BLOCK
-          t.same(msg.payload[0].hash, bufferReverse(new Buffer(context.blockId, 'hex')))
+          t.same(msg.payload[0].hash, bufferReverse(Buffer.from(context.blockId, 'hex')))
 
           context.state = 2
           socket.encoder.write({
@@ -230,7 +230,7 @@ test('Integration with bitcoin core in regtest mode', function (t) {
           if (msg.command !== 'block') return
           rpc.getBlock(context.blockId, false, function (err, blockHex) {
             t.same(err, null)
-            validateBlock(t, msg.payload, bitcoinjs.Block.fromBuffer(new Buffer(blockHex, 'hex')))
+            validateBlock(t, msg.payload, bitcoinjs.Block.fromBuffer(Buffer.from(blockHex, 'hex')))
             t.end()
           })
           return
@@ -283,8 +283,8 @@ test('Integration with bitcoin core in regtest mode', function (t) {
       command: 'getheaders',
       payload: {
         version: 70000,
-        locator: [new Buffer(ZERO_HASH256)],
-        hashStop: new Buffer(ZERO_HASH256)
+        locator: [Buffer.from(ZERO_HASH256)],
+        hashStop: Buffer.from(ZERO_HASH256)
       }
     })
   }))
@@ -304,7 +304,7 @@ test('Integration with bitcoin core in regtest mode', function (t) {
             t.same(msg.payload[i].type, 2) // MSG_BLOCK
             t.same(msg.payload[i].hash.length, 32)
 
-            context.blockId = bufferReverse(new Buffer(msg.payload[i].hash)).toString('hex')
+            context.blockId = bufferReverse(Buffer.from(msg.payload[i].hash)).toString('hex')
             socket.encoder.write({
               command: 'getdata',
               payload: [ msg.payload[i] ]
@@ -320,7 +320,7 @@ test('Integration with bitcoin core in regtest mode', function (t) {
           if (msg.command !== 'block') return
           rpc.getBlock(context.blockId, false, function (err, blockHex) {
             t.same(err, null)
-            validateBlock(t, msg.payload, bitcoinjs.Block.fromBuffer(new Buffer(blockHex, 'hex')))
+            validateBlock(t, msg.payload, bitcoinjs.Block.fromBuffer(Buffer.from(blockHex, 'hex')))
             context.next()
           })
           return
@@ -334,8 +334,8 @@ test('Integration with bitcoin core in regtest mode', function (t) {
       command: 'getblocks',
       payload: {
         version: 70000,
-        locator: [new Buffer(ZERO_HASH256)],
-        hashStop: new Buffer(ZERO_HASH256)
+        locator: [Buffer.from(ZERO_HASH256)],
+        hashStop: Buffer.from(ZERO_HASH256)
       }
     })
   }))

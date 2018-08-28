@@ -23,7 +23,7 @@ var HEADER_LENGTH = messageHeader.encodingLength({
   magic: 0,
   command: '',
   length: 0,
-  checksum: new Buffer('01234567', 'hex')
+  checksum: Buffer.from('01234567', 'hex')
 })
 
 exports.createDecodeStream = function (opts) {

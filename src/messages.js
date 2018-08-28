@@ -29,7 +29,7 @@ function createStructs (overrideTypes) {
     ])
 
     function encode (value, buffer, offset) {
-      if (!buffer) buffer = new Buffer(encodingLength(value))
+      if (!buffer) buffer = Buffer.from(encodingLength(value))
       if (!offset) offset = 0
       baseStruct.encode(value, buffer, offset)
       encode.bytes = baseStruct.encode.bytes
