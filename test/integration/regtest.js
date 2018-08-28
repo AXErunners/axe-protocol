@@ -10,7 +10,7 @@ var bufferReverse = require('buffer-reverse')
 var bp = require('../../')
 
 var REGTEST_MAGIC = require('coininfo').bitcoin.regtest.protocol.magic
-var ZERO_HASH256 = new Buffer(32)
+var ZERO_HASH256 = Buffer.alloc(32)
 ZERO_HASH256.fill(0)
 
 function validateHeader (t, found, wanted) {

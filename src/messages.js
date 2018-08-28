@@ -49,7 +49,7 @@ function createStructs (overrideTypes) {
       var value = baseStruct.decode(buffer, offset, end)
       decode.bytes = baseStruct.decode.bytes
       if (decode.bytes === end) {
-        value.data = new Buffer(0)
+        value.data = Buffer.alloc(0)
       } else {
         value.data = buffer.slice(decode.bytes, end)
         decode.bytes = end

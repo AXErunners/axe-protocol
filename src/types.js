@@ -24,7 +24,7 @@ exports.boolean = (function () {
 exports.ipAddress = (function () {
   var IPV4_PREFIX = new Buffer('00000000000000000000ffff', 'hex')
   function encode (value, buffer, offset) {
-    if (!buffer) buffer = new Buffer(16)
+    if (!buffer) buffer = Buffer.alloc(16)
     if (!offset) offset = 0
     if (offset + 16 > buffer.length) throw new RangeError('destination buffer is too small')
 
@@ -85,7 +85,7 @@ exports.messageCommand = (function () {
 
   function encode (value, buffer, offset) {
     var bvalue = new Buffer(value, 'ascii')
-    var nvalue = new Buffer(12)
+    var nvalue = Buffer.alloc(12)
     bvalue.copy(nvalue, 0)
     for (var i = bvalue.length; i < nvalue.length; ++i) nvalue[i] = 0
     return buffer12.encode(nvalue, buffer, offset)
